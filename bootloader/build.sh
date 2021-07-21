@@ -21,19 +21,19 @@ if [ -d ./optee_os/ ] ; then
 	rm -rf ./optee_os/ || true
 fi
 
-git clone -b $(KIG_TAG) https://github.com/rcn-ee/k3-image-gen --depth=1
+git clone -b ${KIG_TAG} https://github.com/rcn-ee/k3-image-gen --depth=1
 cd ./k3-image-gen/
 make CROSS_COMPILE=arm-linux-gnueabihf-
 cd ../
 
-git clone -b $(ATF_TAG) https://github.com/ARM-software/arm-trusted-firmware.git --depth=1
+git clone -b ${ATF_TAG} https://github.com/ARM-software/arm-trusted-firmware.git --depth=1
 cd ./arm-trusted-firmware/
 make CROSS_COMPILE=aarch64-linux-gnu- ARCH=aarch64 PLAT=k3 TARGET_BOARD=generic SPD=opteed
 cd ../
 
 #; cp -v arm-trusted-firmware/build/k3/generic/release/bl31.bin ../debian/ ; cd ../
 
-git clone -b $(TEE_TAG) https://github.com/OP-TEE/optee_os.git --depth=1
+git clone -b ${TEE_TAG} https://github.com/OP-TEE/optee_os.git --depth=1
 cd ./optee_os/
 make PLATFORM=k3-j721e CFG_ARM64_core=y
 cd ../
