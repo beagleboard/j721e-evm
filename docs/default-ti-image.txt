@@ -1,0 +1,94 @@
+J44 :
+
+ttyUSB0 - boot uart
+ttyUSB1 - kernel console
+
+
+console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000 mtdparts=47040000.spi.0:512k(ospi.tiboot3),2m(ospi.tispl),4m(ospi.u-boot),128k(ospi.env),128k(ospi.env.backup),1m(ospi.sysfw),57216k@8m(ospi.rootfs),128k(ospi.phypattern);47034000.hyperbus:512k(hbmc.tiboot3),2m(hbmc.tispl),4m(hbmc.u-boot),256k(hbmc.env),1m(hbmc.sysfw),-@8m(hbmc.rootfs) root=PARTUUID=cd60cded-02 rw rootfstype=ext4 rootwait
+
+
+root@j7-evm:~# lsblk
+NAME         MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+mtdblock0     31:0    0  512K  0 disk 
+mtdblock1     31:1    0    2M  0 disk 
+mtdblock2     31:2    0    4M  0 disk 
+mtdblock3     31:3    0  128K  0 disk 
+mtdblock4     31:4    0  128K  0 disk 
+mtdblock5     31:5    0    1M  0 disk 
+mtdblock6     31:6    0 55.9M  0 disk 
+mtdblock7     31:7    0  128K  0 disk 
+mtdblock8     31:8    0   64M  0 disk 
+mmcblk0      179:0    0 14.8G  0 disk 
+mmcblk0boot0 179:32   0 31.5M  1 disk 
+mmcblk0boot1 179:64   0 31.5M  1 disk 
+mmcblk1      179:96   0 14.9G  0 disk 
+|-mmcblk1p1  179:97   0  129M  0 part /run/media/mmcblk1p1
+`-mmcblk1p2  179:98   0 14.7G  0 part /
+
+root@j7-evm:~# fdisk -l /dev/mmcblk1 
+Disk /dev/mmcblk1: 14.86 GiB, 15931539456 bytes, 31116288 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xcd60cded
+
+Device         Boot  Start      End  Sectors  Size Id Type
+/dev/mmcblk1p1 *        32   264191   264160  129M  c W95 FAT32 (LBA)
+/dev/mmcblk1p2      264192 31115263 30851072 14.7G 83 Linux
+
+
+U-Boot SPL 2020.01-g3c9ebdb87d (Nov 19 2020 - 18:33:21 +0000)
+SYSFW ABI: 3.1 (firmware rev 0x0014 '20.8.5--v2020.08b (Terrific Lla')
+Trying to boot from MMC2
+Loading Environment from MMC... *** Warning - No MMC card found, using default environment
+
+Starting ATF on ARM64 core...
+
+NOTICE:  BL31: v2.3():07.01.00.004-1-g52c334fc3-dirty
+NOTICE:  BL31: Built : 18:17:14, Nov 19 2020
+
+U-Boot SPL 2020.01-g3c9ebdb87d (Nov 19 2020 - 18:29:59 +0000)
+SYSFW ABI: 3.1 (firmware rev 0x0014 '20.8.5--v2020.08b (Terrific Lla')
+Detected: J7X-BASE-CPB rev E3
+Detected: J7X-VSC8514-ETH rev E2
+Trying to boot from MMC2
+
+
+U-Boot 2020.01-g3c9ebdb87d (Nov 19 2020 - 18:29:59 +0000)
+
+SoC:   J721E SR2.0
+Model: Texas Instruments K3 J721E SoC
+Board: J721EX-PM2-SOM rev E8
+DRAM:  4 GiB
+not found for dev hbmc-mux
+Flash: 0 Bytes
+MMC:   sdhci@4f80000: 0, sdhci@4fb0000: 1
+Loading Environment from MMC... *** Warning - bad CRC, using default environment
+
+In:    serial@2800000
+Out:   serial@2800000
+Err:   serial@2800000
+Detected: J7X-BASE-CPB rev E3
+Detected: J7X-VSC8514-ETH rev E2
+Net:   
+Warning: ethernet@46000000 using MAC address from ROM
+eth0: ethernet@46000000
+Hit any key to stop autoboot:  0 
+switch to partitions #0, OK
+mmc1 is current device
+SD/MMC found on device 1
+0 bytes read in 1 ms (0 Bytes/s)
+Loaded env from uEnv.txt
+Importing environment from mmc1 ...
+16666632 bytes read in 347 ms (45.8 MiB/s)
+93829 bytes read in 5 ms (17.9 MiB/s)
+## Flattened Device Tree blob at 88000000
+   Booting using the fdt blob at 0x88000000
+   Loading Device Tree to 000000008fee6000, end 000000008fffffff ... OK
+
+Starting kernel ...
+
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x411fd080]
+
+
