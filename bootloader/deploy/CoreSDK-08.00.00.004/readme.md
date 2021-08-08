@@ -47,6 +47,7 @@ if [ -d /home/voodoo/ti/${release}/tisdk/ ] ; then
 	echo "rsync -av /home/voodoo/ti/${release}/tisdk/downloads/ /mnt/ti-processor-sdk/${release}/downloads/"
 	echo "rsync -av --exclude=.git /home/voodoo/ti/${release}/tisdk/sources/ /mnt/ti-processor-sdk/${release}/sources/"
 	echo "rsync -av /home/voodoo/ti/${release}/tisdk/build/arago-tmp-external-arm-glibc/deploy/ /mnt/ti-processor-sdk/${release}/deploy/"
+	echo "rsync -av /home/voodoo/ti/${release}/tisdk/build/arago-tmp-external-arm-glibc/sysroots-components/j7_evm/ti-rtos-firmware/lib/firmware /mnt/ti-processor-sdk/${release}/firmware/"
 	echo "run------"
 fi
 ```
