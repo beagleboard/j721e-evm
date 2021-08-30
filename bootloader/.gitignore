@@ -1,3 +1,5 @@
 arm-trusted-firmware/
 k3-image-gen/
 optee_os/
+ti-linux-firmware/
+ti-u-boot/
