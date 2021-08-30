@@ -5,7 +5,7 @@
 #gcc-arm-linux-gnueabihf gcc-aarch64-linux-gnu
 
 #https://git.ti.com/gitweb?p=k3-image-gen/k3-image-gen.git;a=summary
-KIG_TAG=08.00.00.003
+KIG_TAG=08.00.00.004
 #https://github.com/ARM-software/arm-trusted-firmware
 ATF_TAG=master
 #https://github.com/OP-TEE/optee_os.git
@@ -25,7 +25,7 @@ if [ -d ./optee_os/ ] ; then
 	rm -rf ./optee_os/ || true
 fi
 
-git clone -b ${KIG_TAG} https://github.com/rcn-ee/k3-image-gen --depth=1
+git clone -b ${KIG_TAG} https://git.ti.com/git/k3-image-gen/k3-image-gen.git --depth=1
 cd ./k3-image-gen/
 make CROSS_COMPILE=arm-linux-gnueabihf-
 
