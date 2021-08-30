@@ -1,6 +1,8 @@
 #!/bin/bash
 
-#add: bc bison flex libssl-dev gcc-arm-linux-gnueabihf u-boot-tools python3-pycryptodome python3-pyelftools
+#add: bc bison flex libssl-dev u-boot-tools python3-pycryptodome python3-pyelftools
+#binutils-arm-linux-gnueabihf binutils-aarch64-linux-gnu
+#gcc-arm-linux-gnueabihf gcc-aarch64-linux-gnu
 
 #https://git.ti.com/gitweb?p=k3-image-gen/k3-image-gen.git;a=summary
 KIG_TAG=08.00.00.003
