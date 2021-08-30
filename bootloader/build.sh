@@ -6,8 +6,8 @@
 
 #https://git.ti.com/gitweb?p=k3-image-gen/k3-image-gen.git;a=summary
 KIG_TAG=08.00.00.004
-#https://github.com/ARM-software/arm-trusted-firmware
-ATF_TAG=master
+#https://git.ti.com/git/atf/arm-trusted-firmware.git
+ATF_TAG=08.00.00.004
 #https://github.com/OP-TEE/optee_os.git
 TEE_TAG=3.14.0
 
@@ -39,9 +39,13 @@ fi
 
 cd ../
 
-git clone -b ${ATF_TAG} https://github.com/ARM-software/arm-trusted-firmware.git --depth=1
+###
+#gedit /arago-tmp-external-arm-glibc/work/j7_evm-linux/trusted-firmware-a/2.5-r0/temp/log.do_compile
+#make -j 9 V=1 BUILD_BASE=/home/voodoo/ti/08_00_00/tisdk/build/arago-tmp-external-arm-glibc/work/j7_evm-linux/trusted-firmware-a/2.5-r0/build PLAT=k3 TARGET_BOARD=generic SPD=opteed all
+#
+git clone -b ${ATF_TAG} https://git.ti.com/git/atf/arm-trusted-firmware.git --depth=1
 cd ./arm-trusted-firmware/
-make CROSS_COMPILE=aarch64-linux-gnu- ARCH=aarch64 PLAT=k3 TARGET_BOARD=generic SPD=opteed
+make CROSS_COMPILE=aarch64-linux-gnu- ARCH=aarch64 PLAT=k3 TARGET_BOARD=generic SPD=opteed all
 
 if [ -f ./build/k3/generic/release/bl31.bin ] ; then
 	cp -v ./build/k3/generic/release/bl31.bin ../deploy/${time}/
